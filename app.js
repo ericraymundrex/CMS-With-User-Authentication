@@ -85,7 +85,7 @@ app.get('/', (req, res) => {
                 id: 1,
                 brandIcon: 'http://blogs.acu.edu/innovation_foundry/files/2016/07/Adobe-Au-icon.png',
                 brandName: 'Your Brand name',
-                bigTitle: 'CMS - Collage Team',
+                bigTitle: 'CMS - College Team',
                 bigText: 'This is a open source CMS ..thanks for using',
                 ownTitle: 'Title for your Team',
                 ownText: 'Team Description - This is the area where you can describe about your team and its specialization. This description help the user to understand about the team and to join and participate in your team',
