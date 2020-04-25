@@ -1,0 +1,275 @@
+<%- include('partials/header')%>
+<div class="container mt-4">
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+                aria-controls="nav-home" aria-selected="true" style="color: #05386B;">Page
+                insights</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+                aria-controls="nav-profile" aria-selected="false" style="color: #05386B;">Edit page</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+                aria-controls="nav-contact" aria-selected="false" style="color: #05386B;">Manage announcement</a>
+        </div>
+    </nav>
+    <%var i;%>
+    <div class="tab-content text-center" id="nav-tabContent">
+        <div class="tab-pane fade show active rounded-pill" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab"
+            style="background-color: #8EE4AF;">
+            <div class='row mx-auto'>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="container pt-2">
+                        <div class='card' style="width: 18rem; background-color:#05886B; border-color: #05886B;">
+                            <div class="card-body">
+                                <p class="card-text" style="color: #EDF5E1;">Number of page visits:</p>
+                                <h1 class='card-title' style="color: #EDF5E1;">
+                                    <%=Math.round((page[0].visit)/6)%>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="container pt-2">
+                        <div class='card' style="width: 18rem; background-color:#E0C568FF; border-color: #E0C568FF;">
+                            <div class="card-body">
+                                <p class="card-text">Number group members</p>
+                                <h1 class='card-title'>
+                                    <% user.forEach((user,index)=>{
+                                       i=index
+                                   });%>
+                                    <%=i+1%>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table class="table mt-4">
+                <thead class="thead-dark">
+                    <tr class="table-success">
+                        <th scope="col">Index</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Remove user</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% user.forEach((user,index)=>{%>
+                    <tr class="table-success">
+                        <th scope="row"><%=index+1%></th>
+                        <td><%=user.username%></td>
+                        <% if(user.admin==='A'){%>
+                        <td>Admin</td>
+                        <%}else{%>
+                        <td>
+                            <form action="/admin/<%=user._id%>/delete" method="POST">
+                                <button class="btn btn-danger btn-sm">KICK OUT</button>
+                            </form>
+                        </td>
+                        <%}%>
+                    </tr>
+                    <%});%>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class='container mt-4 row mb-4'>
+                <div class='col-lg-6 col-md-12 col-sm-12 col-xs-12'>
+                    <form action="/admin" method="POST">
+                        <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text-success" style="color: #05386B;">Brand
+                                    Icon&nbsp;&nbsp;</span>
+                            </div>
+                            <input type="text" class="form-control rounded-pill border-0" value="<%=page[0].brandIcon%>"
+                                name='brandIcon' style="background-color:#EDF5E1;">
+                        </div>
+                        <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text-success" style="color: #05386B;">Brand name
+                                    &nbsp;</span>
+                            </div>
+                            <input type="text" class="form-control rounded-pill border-0" value="<%=page[0].brandName%>"
+                                name='brandName' style="background-color:#EDF5E1;">
+                        </div>
+                        <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text-success" style="color: #05386B;">jumbotron
+                                    heading&nbsp;&nbsp;</span>
+                            </div>
+                            <input type="text" class="form-control rounded-pill border-0" value="<%=page[0].bigTitle%>"
+                                name='bigTitle' style="background-color:#EDF5E1;">
+                        </div>
+                        <h5 style="color:#05386B;" class="text-left">Note for jumbotron:</h5>
+                        <textarea name="bigText" cols="30" rows="10"
+                            style="width: 510px;background-color: #05386B; color: aliceblue;"><%=page[0].bigText%></textarea>
+                        <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text-success" style="color: #05386B;">Title
+                                    &nbsp;&nbsp;</span>
+                            </div>
+                            <input type="text" class="form-control rounded-pill border-0" type="text"
+                                value="<%=page[0].ownTitle%>" name='ownTitle' style="background-color:#EDF5E1;">
+                        </div>
+                        <h5 style="color:#05386B;" class="text-left">Paragraph:</h5>
+                        <textarea name="ownText" cols="30" rows="10"
+                            style="width: 510px;background-color: #05386B; color: aliceblue;"><%=page[0].ownText%></textarea>
+                </div>
+                <div class='col-lg-6 col-md-12 col-sm-12 col-xs-12'>
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text-success" style="color: #05386B;">University
+                                name&nbsp;&nbsp;</span>
+                        </div>
+                        <input type="text" class="form-control rounded-pill border-0" type="text"
+                            value="<%=page[0].university%>" name='university' style="background-color:#EDF5E1;">
+                    </div>
+                    <h5 style="color:#05386B;" class="text-left">About your university</h5>
+                    <textarea name="uNote" cols="30" rows="10"
+                        style="width: 510px;background-color: #05386B; color: aliceblue;"><%=page[0].uNote%></textarea>
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text-success" tyle="color: #05386B;">University image:</span>
+                        </div>
+                        <input type="text" class="form-control rounded-pill border-0" type="text"
+                            value="<%=page[0].uImg%>" name="uImg" style="background-color:#EDF5E1;">
+                    </div>
+                    <h5 style="color:#05386B;" class="text-left">About you:</h5>
+                    <textarea name="about" cols="30" rows="10"
+                        style="width: 510px;background-color: #05386B; color: aliceblue;"><%=page[0].about%></textarea>
+                    <h5 style="color:#05386B;" class="text-left">Add your own content:</h5>
+                    <textarea name="de" id="" cols="30" rows="10"
+                        style="width: 510px;background-color: #05386B; color: aliceblue;"><%=page[0].de%></textarea>
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text-success" tyle="color: #05386B;">Address</span>
+                        </div>
+                        <input type="text" class="form-control rounded-pill border-0" type="text"
+                            value="<%=page[0].address%>" name="address" style="background-color:#EDF5E1;">
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text-success" tyle="color: #05386B;">Phone number:</span>
+                        </div>
+                        <input type="text" class="form-control rounded-pill border-0" type="text"
+                            value="<%=page[0].phone%>" name="phone" style="background-color:#EDF5E1;">
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text-success" tyle="color: #05386B;">email</span>
+                        </div>
+                        <input type="text" class="form-control rounded-pill border-0" type="text"
+                            value="<%=page[0].email%>" name="email" style="background-color:#EDF5E1;">
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text-success" tyle="color: #05386B;">Instagram page
+                                location:</span>
+                        </div>
+                        <input type="text" class="form-control rounded-pill border-0" type="text"
+                            value="<%=page[0].insta%>" name="insta" style="background-color:#EDF5E1;">
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text-success" tyle="color: #05386B;">Twitter page:</span>
+                        </div>
+                        <input type="text" class="form-control rounded-pill border-0" type="text"
+                            value="<%=page[0].tw%>" name="tw" style="background-color:#EDF5E1;">
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text-success" tyle="color: #05386B;">Youtube channel
+                                address:</span>
+                        </div>
+                        <input type="text" class="form-control rounded-pill border-0" type="text"
+                            value="<%=page[0].yt%>" name="yt" style="background-color:#EDF5E1;">
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text-success" tyle="color: #05386B;">Jumbotron background
+                                image:</span>
+                        </div>
+                        <input type="text" class="form-control rounded-pill border-0" type="text"
+                            value="<%=page[0].Jimg%>" name="Jimg" style="background-color:#EDF5E1;">
+                    </div>
+                    <div>
+
+                        <button class="btn btn-primary border-0">Submit</button>
+                    </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+            <h5 class="mt-4" style="color: #05386B;">Make announcement</h5>
+            <form action="/announcement/new" method="POST">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name='announcement'>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary">Add</button>
+                    </div>
+                </div>
+            </form>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Announcement</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%for(var i=announcement.length;i>0;i--){%>
+                    <tr>
+                        <th scope="row"><%=announcement[i-1].announcement%></th>
+                        <td>
+                            <form action="/announcement/<%=announcement[i-1]._id%>/delete" method="POST">
+                                <button class='btn btn-danger'>DELETE</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <%}%>
+                </tbody>
+            </table>
+            <hr>
+            <form action="/form/new" method="post">
+                <input type="text" class="form-control mb-2" name='form' placeholder="Enter google form URL" required>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name='about' placeholder="Why you make this form" required>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary">Add</button>
+                    </div>
+                </div>
+            </form>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Form</th>
+                        <th scope="col">Note</th>
+                        <th scope="col">Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%for(var i=form.length;i>0;i--){%>
+                    <tr>
+                        <th scope="row"><%=form[i-1].form%></th>
+                        <th scope='row'><%=form[i-1].about%></th>
+                        <th>
+                            <form action="/form/<%=form[i-1]._id%>/delete" method="POST">
+                                <button class='btn btn-danger'>DELETE</button>
+                            </form>
+                        </th>
+                    </tr>
+                    <%}%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<style>
+    body {
+        background-color: #8EE4AF;
+
+    }
+</style>
+<%- include('partials/footer')%>

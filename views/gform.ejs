@@ -1,0 +1,40 @@
+<%- include('partials/header')%>
+<nav class="navbar" style="background-color:#253A4B;">
+    <a class="navbar-brand" href="/">
+        <img src="<%=page[0].brandIcon%>" width="30" height="30" class="d-inline-block align-top" alt="">
+        <%=page[0].brandName%>
+    </a>
+    <div class='text-justify'>
+        <a href="/form" class="btn btn-link btn-sm">FORM</a>
+        <a href="/announcement" class="btn btn-link btn-sm">ANNOUNCEMENT</a>
+        <% if(!user){%>
+        <a class="btn btn-success btn-sm" href='/login'>LOG IN</a>
+        <a class="btn btn-success btn-sm" href='/register'>SIGN UP</a>
+        <% }
+        else{%>
+        <a class="btn btn-success btn-sm" href='/logout'>LOG OUT</a>
+        <% }%>
+    </div>
+</nav>
+<div class="container mt-4">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Form</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%form.forEach((form,index)=>{%>
+            <tr>
+                <th scope="row"><a href="<%=form.form%>"><%=form.about%></a></th>
+            </tr>
+            <%});%>
+        </tbody>
+    </table>
+</div>
+<style>
+    body {
+        background-color: #EDF5E1;
+    }
+</style>
+<%- include('partials/footer')%>
