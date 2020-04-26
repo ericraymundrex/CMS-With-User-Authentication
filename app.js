@@ -83,7 +83,6 @@ app.get('/', (req, res) => {
         } else {
             Page.create({
                 id: 1,
-                brandIcon: 'http://blogs.acu.edu/innovation_foundry/files/2016/07/Adobe-Au-icon.png',
                 brandName: 'Your Brand name',
                 bigTitle: 'CMS - College Team',
                 bigText: 'This is a open source CMS ..thanks for using',
