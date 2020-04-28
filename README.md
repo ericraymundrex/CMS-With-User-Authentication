@@ -12,4 +12,10 @@ This is the free and open source content management system for college team to g
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1"
-  
+### To Run the code
+```node app.js```-To run the CMS in local. The data will store in CMS in mongoDB.
+There are some sample data attached with the project in public folder.
+
+### Important to note:
+First user is considered as admin and only admin can visit admin portal.
+To visit admin portal go to the route ```localhost:3000/admin```
