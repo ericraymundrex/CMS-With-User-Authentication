@@ -19,3 +19,9 @@ There are some sample data attached with the project in public folder.
 ### Important to note:
 First user is considered as admin and only admin can visit admin portal.
 To visit admin portal go to the route ```localhost:3000/admin```
+### Collections :
+In the first run the server will create 4 collections in CMS database
+1.announcements
+2.forms
+3.pages
+4.users
