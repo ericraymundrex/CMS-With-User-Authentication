@@ -1,5 +1,5 @@
 ## Content Management System for College Team
-This is the free and open source content management system for college team to get their team online . This CMS is made in MEN (MongoDB,Express and Node js) stack.
+This is the free and open source content management system for college team to get their team online . This CMS is made in MEN (MongoDB,Express and Node js) stack.This project includes team member authentication and a separate admin portal.
 
 ### Dependencies 
 
