@@ -1,5 +1,5 @@
 ## Content Management System for College Team
-This is used to manage the content of the college team. This provides salted encryption for all passwords. Have a separate admin portal. This is buit on nodejs, mongodb and express,
+This is used to manage the content of the college team. This provides salted encryption for all passwords. Have a separate admin portal. This is buit on nodejs, mongodb and express.
 
 ### Dependencies 
     "body-parser": "^1.19.0",
